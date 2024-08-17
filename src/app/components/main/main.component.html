@@ -11,14 +11,16 @@
   @if(loading){
     <app-loading-spinner></app-loading-spinner>
   }
-  @for (movie of results; track $index){
-    <app-movie-item
-      [title]="movie.Title"
-      [poster]="movie.poster"
-      [year]="movie.Year"
-      (click)="showDetails(movie)"
-    ></app-movie-item>
-    }@empty {
-      <a>No item exist</a>
-    }
+  @else {
+    @for (movie of results; track $index){
+      <app-movie-item
+        [title]="movie.Title"
+        [poster]="movie.poster"
+        [year]="movie.Year"
+        (click)="showDetails(movie)"
+      ></app-movie-item>
+      }@empty {
+        <a>No item exist</a>
+      }
+  }
 </div>
