@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class MovieService {
   private apiUrl = 'https://www.omdbapi.com/';
-  private apiKey = '4603613e';  // Replace with your actual OMDB API key
+  private apiKey = '4603613e';  // TODO: think of a way to hide this
 
   constructor(private http: HttpClient) {}
 

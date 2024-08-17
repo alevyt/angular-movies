@@ -13,5 +13,7 @@ export class MovieItemComponent {
   @Input() poster!: string;
   @Input() year!: string;
 
+  placeholderImage: string = 'assets/noposter.svg';
+
   // Later we can add click handling for showing more details
 }

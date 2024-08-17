@@ -15,7 +15,7 @@
     @for (movie of results; track $index){
       <app-movie-item
         [title]="movie.Title"
-        [poster]="movie.poster"
+        [poster]="movie.Poster"
         [year]="movie.Year"
         (click)="showDetails(movie)"
       ></app-movie-item>
