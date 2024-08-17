@@ -1,0 +1,28 @@
+.movie-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+  
+  .movie-poster {
+    width: 100px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 4px;
+  }
+  
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movie-info h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .movie-info p {
+    margin: 0;
+    color: #777;
+  }

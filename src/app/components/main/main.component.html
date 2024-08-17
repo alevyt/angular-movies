@@ -1,14 +1,24 @@
 <div class="search-container">
-    <input
-      type="text"
-      placeholder="Search..."
-      [(ngModel)]="searchTerm"
-      (input)="onSearch()"
-      class="search-input"
-    />
-  </div>
-  <div class="results-container">
-    <div *for="let result of results; index as i; trackBy: trackByFn" class="result-item">
-        {{ i + 1 }}. {{ result }}
-    </div>
-  </div>
+  <input
+    type="text"
+    placeholder="Search..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+    class="search-input"
+  />
+</div>
+<div class="results-container">
+  @if(loading){
+    <app-loading-spinner></app-loading-spinner>
+  }
+  @for (movie of results; track $index){
+    <app-movie-item
+      [title]="movie.Title"
+      [poster]="movie.poster"
+      [year]="movie.Year"
+      (click)="showDetails(movie)"
+    ></app-movie-item>
+    }@empty {
+      <a>No item exist</a>
+    }
+</div>
