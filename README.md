@@ -1,27 +1,70 @@
-# AngularMovies
+# Angular Movie Search App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+This is an Angular application that allows users to search for movies using the OMDB API. The app displays movie search results with pagination and provides detailed information about each movie. Users can also click on a movie's IMDb ID to be redirected to its IMDb page.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Movie Search**: Search for movies by title.
+- **Pagination**: Navigate through pages of search results.
+- **Movie Details**: View details of selected movies, including title, year, and poster.
+- **IMDb Redirection**: Click on the IMDb ID to view the movie's IMDb page.
+- **Loading Indicator**: Displays a loading animation while fetching data.
+- **Debounce Search**: Prevents too many requests by adding debounce time to the search input.
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular 17**
+- **TypeScript**
+- **RxJS**
+- **OMDB API**
+- **Visual Studio Code** (recommended IDE)
 
-## Build
+## Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Before you begin, ensure you have met the following requirements:
 
-## Running unit tests
+- **Node.js** and **npm** installed on your machine.
+- An API key from [OMDB API](http://www.omdbapi.com/apikey.aspx).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/angular-movie-search.git
+   cd angular-movie-search
+   ```
+2. 	Install dependencies:
+    ```bash
+    npm install
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Running the Application
 
-## Further help
+```bash
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Testing
+
+```bash
+ng test
+```
+This will run the tests and provide feedback on the functionality of the components and services.
+
+## Project Structure
+
+- src/app/components: Contains the main components like MainComponent and MovieItemComponent.
+- src/app/services: Contains the MovieService which handles communication with the OMDB API.
+- src/app/models: Contains the Movie interface for type safety.
+- src/assets: Contains static assets like images.
+- src/environments: Environment configuration.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- [OMDB API](http://www.omdbapi.com/) for providing the movie data.
+- [Angular](https://angular.io/) for the framework.
+- [Visual Studio Code](https://code.visualstudio.com/) for the development environment.
