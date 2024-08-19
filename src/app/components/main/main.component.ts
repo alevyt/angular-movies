@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MovieItemComponent } from '../movie-item/movie-item.component'; 
+import { MovieItemComponent } from '../movie-item/movie-item.component';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
@@ -10,7 +10,13 @@ import { MovieService } from '../../services/movie.service';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [HttpClientModule, CommonModule, FormsModule, MovieItemComponent, LoadingSpinnerComponent],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    FormsModule,
+    MovieItemComponent,
+    LoadingSpinnerComponent,
+  ],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
   providers: [MovieService],
@@ -25,7 +31,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.searchSubject
       .pipe(
-        debounceTime(500), 
+        debounceTime(500),
         distinctUntilChanged(),
         switchMap((term: string) => {
           if (term) {
@@ -47,7 +53,7 @@ export class MainComponent implements OnInit {
     this.searchSubject.next(this.searchTerm);
   }
 
-  showDetails(movie: { title: string, poster: string, year: string }) {
+  showDetails(movie: { title: string; poster: string; year: string }) {
     // Logic for showing more details will be added later
     console.log(movie);
   }

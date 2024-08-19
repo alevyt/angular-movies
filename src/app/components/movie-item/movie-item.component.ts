@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../../services/movie.service';
-import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.component";
+import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-movie-item',
   standalone: true,
   imports: [CommonModule, LoadingSpinnerComponent],
   templateUrl: './movie-item.component.html',
-  styleUrls: ['./movie-item.component.scss']
+  styleUrls: ['./movie-item.component.scss'],
 })
 export class MovieItemComponent {
   @Input() title!: string;
@@ -25,15 +25,13 @@ export class MovieItemComponent {
 
   onMovieClick() {
     if (!this.showDetails) {
-      if(!this.movieDetails){
+      this.showDetails = true;
+      if (!this.movieDetails) {
         this.loading = true;
         this.movieService.getMovieDetails(this.imdbID).subscribe((data) => {
           this.movieDetails = data;
           this.loading = false;
-          this.showDetails = true;
         });
-      } else {
-        this.showDetails = true;
       }
     } else {
       this.showDetails = false;

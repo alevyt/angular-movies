@@ -9,18 +9,15 @@
 </div>
 <div class="results-container">
   @if(loading){
-    <app-loading-spinner></app-loading-spinner>
-  }
-  @else {
-    @for (movie of results; track $index){
-      <app-movie-item
-        [title]="movie.Title"
-        [poster]="movie.Poster"
-        [year]="movie.Year"
-        [imdbID]="movie.imdbID"
-      ></app-movie-item>
-      }@empty {
-        <a>No item exist</a>
-      }
-  }
+  <app-loading-spinner></app-loading-spinner>
+  } @else { @for (movie of results; track $index){
+  <app-movie-item
+    [title]="movie.Title"
+    [poster]="movie.Poster"
+    [year]="movie.Year"
+    [imdbID]="movie.imdbID"
+  ></app-movie-item>
+  }@empty {
+  <a>No item exist</a>
+  } }
 </div>

@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { MovieService } from './movie.service';
 
 describe('MovieService', () => {
@@ -9,7 +12,7 @@ describe('MovieService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [MovieService]
+      providers: [MovieService],
     });
 
     service = TestBed.inject(MovieService);
@@ -20,8 +23,6 @@ describe('MovieService', () => {
     httpMock.verify(); // Verifies that no unmatched requests are outstanding
   });
 
-  
-
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -29,21 +30,33 @@ describe('MovieService', () => {
   it('should fetch movies by search term', () => {
     const dummyMovies = {
       Search: [
-        { Title: 'Movie 1', Year: '2021', imdbID: 'tt1234567', Poster: 'poster1.jpg' },
-        { Title: 'Movie 2', Year: '2022', imdbID: 'tt7654321', Poster: 'poster2.jpg' }
+        {
+          Title: 'Movie 1',
+          Year: '2021',
+          imdbID: 'tt1234567',
+          Poster: 'poster1.jpg',
+        },
+        {
+          Title: 'Movie 2',
+          Year: '2022',
+          imdbID: 'tt7654321',
+          Poster: 'poster2.jpg',
+        },
       ],
       totalResults: '2',
-      Response: 'True'
+      Response: 'True',
     };
-  
+
     const searchTerm = 'Batman';
-  
-    service.searchMovies(searchTerm).subscribe(movies => {
+
+    service.searchMovies(searchTerm).subscribe((movies) => {
       expect(movies.length).toBe(2);
       expect(movies).toEqual(dummyMovies.Search);
     });
-  
-    const req = httpMock.expectOne(`https://www.omdbapi.com/?apikey=4603613e&s=${searchTerm}`);
+
+    const req = httpMock.expectOne(
+      `https://www.omdbapi.com/?apikey=4603613e&s=${searchTerm}`
+    );
     expect(req.request.method).toBe('GET');
     req.flush(dummyMovies);
   });
@@ -73,17 +86,19 @@ describe('MovieService', () => {
       BoxOffice: 'N/A',
       Production: 'N/A',
       Website: 'N/A',
-      Response: 'True'
+      Response: 'True',
     };
-  
+
     const imdbID = 'tt1234567';
-  
-    service.getMovieDetails(imdbID).subscribe(movie => {
+
+    service.getMovieDetails(imdbID).subscribe((movie) => {
       expect(movie.Title).toBe('Movie 1');
       expect(movie).toEqual(dummyMovieDetails);
     });
-  
-    const req = httpMock.expectOne(`https://www.omdbapi.com/?apikey=4603613e&i=${imdbID}`);
+
+    const req = httpMock.expectOne(
+      `https://www.omdbapi.com/?apikey=4603613e&i=${imdbID}`
+    );
     expect(req.request.method).toBe('GET');
     req.flush(dummyMovieDetails);
   });

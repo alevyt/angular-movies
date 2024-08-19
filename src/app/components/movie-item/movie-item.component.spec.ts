@@ -47,4 +47,13 @@ describe('MovieItemComponent', () => {
     expect(component.onMovieClick).toHaveBeenCalled();
     expect(component.showDetails).toBe(true);
   });
+
+  it('should display and link the IMDb ID', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const imdbLink = compiled.querySelector('a') as HTMLAnchorElement;
+
+    expect(imdbLink).toBeTruthy();
+    expect(imdbLink.textContent).toBe('tt1234567');
+    expect(imdbLink.href).toBe('https://www.imdb.com/title/tt1234567');
+  });
 });

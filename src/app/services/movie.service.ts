@@ -7,12 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class MovieService {
   private apiUrl = 'https://www.omdbapi.com/';
-  private apiKey = '4603613e';  // TODO: think of a way to hide this
+  private apiKey = '4603613e'; // TODO: think of a way to hide this
 
   constructor(private http: HttpClient) {}
 
   searchMovies(title: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?s=${title}&apikey=${this.apiKey}`);
+    return this.http.get<any>(
+      `${this.apiUrl}?s=${title}&apikey=${this.apiKey}`
+    );
   }
 
   getMovieDetails(id: string): Observable<any> {
