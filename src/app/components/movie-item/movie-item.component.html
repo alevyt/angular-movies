@@ -1,7 +1,25 @@
-<div class="movie-item">
+<div class="movie-item"
+    [ngClass]="{'expanded': showDetails}"
+    (click)="onMovieClick()">
     <img [src]="poster !== 'N/A' ? poster : placeholderImage" alt="{{ title }}" class="movie-poster" />
-    <div class="movie-info">
-      <h3>{{ title }}</h3>
-      <p>{{ year }}</p>
+    <div class="movie-details">
+        <h3>{{ title }}</h3>
+        <p>{{ year }}</p>
     </div>
+    @if (loading) {
+        <div class="loading-spinner">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+    }
+    @else {
+      @if (showDetails && movieDetails) {
+          <div *ngIf="showDetails && movieDetails" class="additional-info">
+            <p><strong>Director:</strong> {{ movieDetails.Director }}</p>
+            <p><strong>Actors:</strong> {{ movieDetails.Actors }}</p>
+            <p><strong>Plot:</strong> {{ movieDetails.Plot }}</p>
+            <p><strong>Genre:</strong> {{ movieDetails.Genre }}</p>
+            <p><strong>Runtime:</strong> {{ movieDetails.Runtime }}</p>
+          </div>
+      }
+    }
   </div>

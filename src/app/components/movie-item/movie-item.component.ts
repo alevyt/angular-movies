@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MovieService } from '../../services/movie.service';
+import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-movie-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoadingSpinnerComponent],
   templateUrl: './movie-item.component.html',
   styleUrls: ['./movie-item.component.scss']
 })
@@ -12,8 +14,29 @@ export class MovieItemComponent {
   @Input() title!: string;
   @Input() poster!: string;
   @Input() year!: string;
+  @Input() imdbID!: string;
 
   placeholderImage: string = 'assets/noposter.svg';
+  showDetails: boolean = false;
+  movieDetails: any = null;
+  loading: boolean = false;
 
-  // Later we can add click handling for showing more details
+  constructor(private movieService: MovieService) {}
+
+  onMovieClick() {
+    if (!this.showDetails) {
+      if(!this.movieDetails){
+        this.loading = true;
+        this.movieService.getMovieDetails(this.imdbID).subscribe((data) => {
+          this.movieDetails = data;
+          this.loading = false;
+          this.showDetails = true;
+        });
+      } else {
+        this.showDetails = true;
+      }
+    } else {
+      this.showDetails = false;
+    }
+  }
 }

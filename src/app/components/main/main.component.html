@@ -17,7 +17,7 @@
         [title]="movie.Title"
         [poster]="movie.Poster"
         [year]="movie.Year"
-        (click)="showDetails(movie)"
+        [imdbID]="movie.imdbID"
       ></app-movie-item>
       }@empty {
         <a>No item exist</a>
